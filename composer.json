@@ -1,0 +1,21 @@
+{
+    "name": "persianyii/yii2-rss",
+    "description": "create rss useb by array or db query data",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"," rss"],
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "farshid",
+            "email": "nfarshidn@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "persianyii\\rss\\": ""
+        }
+    }
+}
