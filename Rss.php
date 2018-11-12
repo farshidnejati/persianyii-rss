@@ -1,31 +1,25 @@
 <?php
-
 namespace persianyii\rss;
 /*
 RSS Feed Generator for PHP 4 or higher version
 Version 1.0.3
 Written by Vagharshak Tozalakyan <vagh@armdex.com>
 License: GNU Public License
-
 Classes in package:
 class rssGenerator_rss
 class rssGenerator_channel
 class rssGenerator_image
 class rssGenerator_textInput
 class rssGenerator_item
-
 For additional information please reffer the documentation
  */
-
 class Rss extends \yii\base\Widget {
 	var $rss_version = '2.0';
 	var $encoding = 'utf-8';
 	var $stylesheet = '';
-
 	function cData($str) {
 		return '<![CDATA[ ' . $str . ' ]]>';
 	}
-
 	function createFeed($channel) {
 		$selfUrl = (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on' ? 'http://' : 'https://');
 		$selfUrl .= $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
@@ -120,15 +114,12 @@ class Rss extends \yii\base\Widget {
 			if (array_key_exists('description', $textInput)) {
 				$rss .= '      <description>' . $textInput['description'] . '</description>' . "\n";
 			}
-
 			if (array_key_exists('name', $textInput)) {
 				$rss .= '      <name>' . $textInput['name'] . '</name>' . "\n";
 			}
-
 			if (array_key_exists('link', $textInput)) {
 				$rss .= '      <link>' . $textInput['link'] . '</link>' . "\n";
 			}
-
 			$rss .= '    </textInput>' . "\n";
 		}
 		if (array_key_exists('cloud_domain', $channel) || array_key_exists('cloud_path', $channel) || array_key_exists('cloud_registerProcedure', $channel) || array_key_exists('cloud_protocol', $channel)) {
@@ -165,14 +156,12 @@ class Rss extends \yii\base\Widget {
 				if (array_key_exists('guid_isPermaLink', $item)) {
 					$rss .= ($item['guid_isPermaLink'] ? 'true' : 'false') . '">';
 				}
-
 				$rss .= $item['guid'] . '</guid>' . "\n";
 			}
 			if (array_key_exists('source', $item)) {
 				if (array_key_exists('source_url', $item)) {
 					$rss .= '      <source url="' . $item['source_url'] . '">';
 				}
-
 				$rss .= $item['source'] . '</source>' . "\n";
 			}
 			if (array_key_exists('enclosure_url', $item) || array_key_exists('enclosure_type', $item)) {
@@ -180,7 +169,6 @@ class Rss extends \yii\base\Widget {
 				if (array_key_exists('enclosure_length', $item)) {
 					$rss .= 'length="' . $item['enclosure_length'] . '" ';
 				}
-
 				$rss .= 'type="' . $item['enclosure_type'] . '" />' . "\n";
 			}
 			if (array_key_exists('categories', $item)) {
@@ -192,7 +180,6 @@ class Rss extends \yii\base\Widget {
 					if (array_key_exists('name', $category)) {
 						$rss .= '>' . $category['name'] . '</category>' . "\n";
 					}
-
 				}
 			}
 			$rss .= '    </item>' . "\n";
@@ -200,5 +187,4 @@ class Rss extends \yii\base\Widget {
 		$rss .= '  </channel>' . "\r";
 		return $rss .= '</rss>';
 	}
-
 }
